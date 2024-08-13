@@ -65,7 +65,6 @@ GEM
     mustermann (3.0.1)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
-    mysql2 (0.5.6)
     nio4r (2.7.3)
     psych (5.1.2)
       stringio
@@ -108,7 +107,6 @@ PLATFORMS
 
 DEPENDENCIES
   gemstash (~> 2.7.1)
-  mysql2
   server_health_check-rack
 
 RUBY VERSION

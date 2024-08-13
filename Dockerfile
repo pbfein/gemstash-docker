@@ -1,4 +1,4 @@
-FROM ruby:3.2.5-alpine
+FROM ruby:3.2.5-slim
 LABEL maintainer="nine.ch <engineering@nine.ch>"
 
 RUN mkdir -p /app /var/lib/gemstash && \
@@ -7,9 +7,10 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock /app/
 
-RUN apk add --no-cache build-base busybox-extras openssl git sqlite-dev mariadb-dev \
-    && bundle install -j2 --deployment \
-    && apk del build-base git
+RUN apt-get update -qq  \
+    && apt-get install --no-install-recommends -y build-essential pkg-config git libpq-dev libsqlite3-0 \
+    && bundle lock --add-platform x86_64-linux \
+    && bundle install -j2 --deployment
 
 COPY . /app/
 
